@@ -1,15 +1,13 @@
-name: Template Runner (intern)
+name: Run Central Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   call-semantic-release:
     uses: linuspalma/cicd-templates/.github/workflows/semantic-release.yml@main
-
     with:
       node_version: '20'
     secrets:
