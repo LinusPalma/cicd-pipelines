@@ -1,6 +1,6 @@
 {
   "name": "cicd-pipelines",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "CI/CD Pipeline Templates",
   "private": true,
   "devDependencies": {
@@ -9,7 +9,10 @@
     "semantic-release": "^22.0.0"
   },
   "release": {
-    "branches": ["main", "dev"],
+    "branches": [
+      "main",
+      "dev"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
