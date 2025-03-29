@@ -1,4 +1,4 @@
-# Überarbeitete Projektanforderung: Zentrale CI/CD-Pipeline-Verwaltung
+# Projektanforderung: Zentrale CI/CD-Pipeline-Verwaltung
 
 ## Projektziel
 Entwicklung eines zentralen Repositories für standardisierte CI/CD-Pipelines, die in verschiedenen Projekten über GitHub Actions (primär) und perspektivisch auch GitLab CI/CD (sekundär) eingesetzt werden können. Ziel ist die Vereinheitlichung von DevOps-Prozessen durch wiederverwendbare, versionierte Pipeline-Definitionen.

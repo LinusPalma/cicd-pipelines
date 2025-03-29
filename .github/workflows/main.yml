@@ -1,0 +1,13 @@
+name: Template Runner (intern)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-semantic-release:
+    uses: linuspalma/ci-templates/.github/workflows/semantic-release.yml@main
+    with:
+      node_version: '20'
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
