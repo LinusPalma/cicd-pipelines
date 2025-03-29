@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-semantic-release:
-    uses: linuspalma/cicd-templates/.github/workflows/semantic-release.yml@main
+    uses: linuspalma/cicd-pipelines/.github/workflows/semantic-release.yml@main
     with:
       node_version: '20'
     secrets:
