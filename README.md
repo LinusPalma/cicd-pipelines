@@ -12,6 +12,7 @@ Entwicklung eines zentralen Repositories für standardisierte CI/CD-Pipelines, d
 
 ### 2. Standardisierte Workflows
 - **Semantische Versionierung**: Automatische Versionsverwaltung basierend auf Commit-Nachrichten
+- **Testing Pipelines**: Automatische e2e und Unit-Tests
 - **Container-Build**: Parametrisierte Workflows für das Erstellen und Veröffentlichen von Container-Images
 - **Deployment-Pipelines**: Differenzierte Workflows für verschiedene Umgebungen (DEV für dev-Branch, PROD für main-Branch)
 - Unterstützung für verschiedene Projekttypen (Web-Anwendungen, Python-Projekte, etc.)
