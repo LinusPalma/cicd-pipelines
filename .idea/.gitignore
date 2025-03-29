@@ -8,5 +8,6 @@
 /dataSources.local.xml
 
 .env
+node_modules/
 
 
