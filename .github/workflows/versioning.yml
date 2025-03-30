@@ -41,4 +41,4 @@ jobs:
       - name: Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release --extends=template/configs/versioning.config.js
+        run: npx semantic-release --extends=$(pwd)/template/configs/versioning.config.js
