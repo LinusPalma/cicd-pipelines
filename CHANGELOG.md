@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.5.0...v1.6.0) (2025-03-30)
+
+
+### Bug Fixes
+
+* config in versioning.yml ([04770d8](https://github.com/LinusPalma/cicd-pipelines/commit/04770d8efb964c585a1d9ee9acacde468fb491af))
+* versioning workflow ([7620f5c](https://github.com/LinusPalma/cicd-pipelines/commit/7620f5c7c03bf3a7f0c3c4cc2bc4e832aad0b311))
+
+
+### Features
+
+* new try with github actions ([9406a6b](https://github.com/LinusPalma/cicd-pipelines/commit/9406a6b9e76c72a9b7f3527b0ed120a4ea816958))
+* new try with github actions ([b49fa4f](https://github.com/LinusPalma/cicd-pipelines/commit/b49fa4f43e93bed67e08fa5f674a362574d43a94))
+
 ## [1.4.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.4.0...v1.4.1) (2025-03-30)
 
 
