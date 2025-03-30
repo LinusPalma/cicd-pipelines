@@ -39,11 +39,17 @@ jobs:
                 ]
               }],
               "@semantic-release/release-notes-generator"
-            ]
+            ],
+            "dryRun": true,
+            "ci": false
           }
           EOF
 
-      - run: npm ci
+      - name: Remove npm-specific configuration
+        run: |
+          echo "{}" > package.json
+
+      - run: npm i @semantic-release/commit-analyzer @semantic-release/release-notes-generator semantic-release
 
       - name: Get Next Version
         id: next-version
