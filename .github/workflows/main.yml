@@ -20,16 +20,16 @@
       #test
 
 
-name: Semantic Release versioning
+name: Semantic Release
 
 on:
-  workflow_call:
-    secrets:
-      GH_TOKEN:
-        required: true
+  push:
+    branches:
+      - main
 
 jobs:
-  versioning:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +37,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: linuspalma/cicd-pipelines/.github/actions/semantic-release@main
+      - uses: ./.github/actions/semantic-release
         with:
           gh-token: ${{ secrets.GH_TOKEN }}
