@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.3.0...v1.4.0) (2025-03-30)
+
+
+### Features
+
+* change package.json und changelog.md ([d67a072](https://github.com/LinusPalma/cicd-pipelines/commit/d67a0722dd53974866f9e4736a1bff153a8636ad))
+* change package.json und changelog.md ([42aba06](https://github.com/LinusPalma/cicd-pipelines/commit/42aba06650eae50db67954a4dbb075fe38ddcc05))
+
 # [1.1.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.0.1...v1.1.0) (2025-03-30)
 
 
