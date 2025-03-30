@@ -10,8 +10,6 @@ on:
     secrets:
       GH_TOKEN:
         required: true
-      NPM_TOKEN:
-        required: true
 
 jobs:
   release:
@@ -25,4 +23,3 @@ jobs:
       - run: npx semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
