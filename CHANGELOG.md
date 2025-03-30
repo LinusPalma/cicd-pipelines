@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.0.0...v1.0.1) (2025-03-29)
+
+
+### Bug Fixes
+
+* test ([725457a](https://github.com/LinusPalma/cicd-pipelines/commit/725457a144b94b9b710ffcf004c482a3e32e5a34))
+
 # 1.0.0 (2025-03-29)
 
 

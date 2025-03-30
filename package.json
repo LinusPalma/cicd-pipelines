@@ -1,6 +1,6 @@
 {
   "name": "cicd-pipelines",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CI/CD Pipeline Templates",
   "private": true,
   "devDependencies": {
