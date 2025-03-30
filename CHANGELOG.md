@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.6.1...v1.7.0) (2025-03-30)
+
+
+### Features
+
+* installing working directory dependancys ([38ccf6f](https://github.com/LinusPalma/cicd-pipelines/commit/38ccf6f78e51e8230da797c2a5500415e1d640db))
+
 ## [1.6.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.6.0...v1.6.1) (2025-03-30)
 
 
