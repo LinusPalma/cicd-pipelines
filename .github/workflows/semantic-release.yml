@@ -30,12 +30,18 @@ jobs:
           {
             "branches": ["main"],
             "plugins": [
-              "@semantic-release/commit-analyzer",
+              ["@semantic-release/commit-analyzer", {
+                "preset": "angular",
+                "releaseRules": [
+                  {"type": "docs", "release": "patch"},
+                  {"type": "refactor", "release": "patch"},
+                  {"type": "style", "release": "patch"}
+                ]
+              }],
               "@semantic-release/release-notes-generator",
               "@semantic-release/changelog",
-              ["@semantic-release/git", {
-                "assets": ["package.json", "CHANGELOG.md"],
-                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+              ["@semantic-release/github", {
+                "assets": ["CHANGELOG.md"]
               }]
             ]
           }
@@ -43,19 +49,27 @@ jobs:
 
       - run: npm ci
 
-      - name: Semantic Release with Version Update
+      - name: Get Next Version
+        id: next-version
         run: |
-          # Führe semantic-release aus und speichere die Version
-          VERSION=$(npx semantic-release --dry-run | grep -oP 'The next release version is \K[0-9]+\.[0-9]+\.[0-9]+' || true)
-          
+          VERSION=$(npx semantic-release --dry-run | grep -oP 'The next release version is \K[0-9]+\.[0-9]+\.[0-9]+' || echo "")
           if [ ! -z "$VERSION" ]; then
-            # Aktualisiere package.json
-            sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
-          
-            # Führe semantic-release richtig aus
-            npx semantic-release
+            echo "Found new version: $VERSION"
+            # Update package.json
+            node -e "const pkg = require('./package.json'); pkg.version = '$VERSION'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n')"
+            # Stage the changes
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+            git add package.json
+            git commit -m "chore(release): update version to $VERSION [skip ci]"
+            git push
           else
             echo "No new version to be released"
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Semantic Release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
