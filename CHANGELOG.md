@@ -1,3 +1,15 @@
+## [1.6.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.6.0...v1.6.1) (2025-03-30)
+
+
+### Bug Fixes
+
+* versioning workflow ([b9b9642](https://github.com/LinusPalma/cicd-pipelines/commit/b9b9642fd7b70546e2ba34962e52694c209440d4))
+* versioning workflow ([a900513](https://github.com/LinusPalma/cicd-pipelines/commit/a9005138daa297b5836a80abe2d2300285680c78))
+* versioning workflow ([e32a9e6](https://github.com/LinusPalma/cicd-pipelines/commit/e32a9e65a21a4fbc28ed6744e41b8645520c9e14))
+* versioning workflow ([6d8739f](https://github.com/LinusPalma/cicd-pipelines/commit/6d8739f47ec9c1b9a6aa7b6602aec67f3923eb5f))
+* versioning workflow ([7078959](https://github.com/LinusPalma/cicd-pipelines/commit/7078959785ad3f41d5770716ac08198a60ff930a))
+* versioning workflow ([bc4c66e](https://github.com/LinusPalma/cicd-pipelines/commit/bc4c66e71a5dc22cc7fab6e4f54583065cbee3bd))
+
 # [1.6.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.5.0...v1.6.0) (2025-03-30)
 
 
