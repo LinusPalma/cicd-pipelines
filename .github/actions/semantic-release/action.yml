@@ -1,0 +1,49 @@
+name: 'Semantic Release with Template Config'
+description: 'Runs semantic-release with template configuration'
+
+inputs:
+  gh-token:
+    required: true
+    description: 'GitHub token'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Setup config
+      shell: bash
+      run: |
+        cat > release.config.js << 'EOL'
+        export default {
+            branches: ['main'],
+            plugins: [
+                '@semantic-release/commit-analyzer',
+                '@semantic-release/release-notes-generator',
+                '@semantic-release/changelog',
+                ['@semantic-release/npm', {
+                    "npmPublish": false
+                }],
+                ['@semantic-release/git', {
+                    "assets": [
+                        "package.json",
+                        "CHANGELOG.md"
+                    ],
+                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                }],
+                '@semantic-release/github'
+            ]
+        }
+        EOL
+
+    - name: Semantic Release
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
+      run: npx semantic-release

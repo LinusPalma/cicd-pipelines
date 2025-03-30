@@ -2,11 +2,14 @@ name: Semantic Release versioning
 
 on:
   workflow_call:
+    inputs:
+      config_path:
+        required: false
+        type: string
+        default: './configs/versioning.config.js'
     secrets:
       GH_TOKEN:
         required: true
-   #   NPM_TOKEN:
-   #     required: true
 
 jobs:
   versioning:
@@ -27,34 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create temp config
-        run: |
-          echo 'module.exports = {
-            branches: ["main"],
-            plugins: [
-              "@semantic-release/commit-analyzer",
-              "@semantic-release/release-notes-generator",
-              "@semantic-release/changelog",
-              ["@semantic-release/npm", {
-                npmPublish: false,
-                tarballDir: false
-              }],
-              ["@semantic-release/git", {
-                assets: [
-                  "package.json",
-                  "CHANGELOG.md"
-                ],
-                message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-              }],
-              "@semantic-release/github"
-            ]
-          };' > release.config.js
-      
-      
-      
-
       - name: Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-       #   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: npx semantic-release --extends=${{ inputs.config_path }}

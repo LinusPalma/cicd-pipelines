@@ -1,20 +1,42 @@
-name: Run Central Pipeline
+#name: Run Central Pipeline
 
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+#on:
+#  push:
+#    branches: [main]
+#  workflow_dispatch:
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+#permissions:
+#  contents: write
+#  issues: write
+#  pull-requests: write
 
-jobs:
-  semantic-release:
-    uses: linuspalma/cicd-pipelines/.github/workflows/versioning.yml@main
-    secrets:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+#jobs:
+#  semantic-release:
+#    uses: linuspalma/cicd-pipelines/.github/workflows/versioning.yml@main
+#    secrets:
+#      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     #  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       #test
+
+
+name: Semantic Release versioning
+
+on:
+  workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: true
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: linuspalma/cicd-pipelines/.github/actions/semantic-release@main
+        with:
+          gh-token: ${{ secrets.GH_TOKEN }}
