@@ -27,6 +27,8 @@ jobs:
           repository: linuspalma/cicd-pipelines
           ref: main
           path: template
+      - name: List Template Repository
+        run: ls -R template
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
