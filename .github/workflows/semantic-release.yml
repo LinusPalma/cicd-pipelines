@@ -10,19 +10,26 @@ on:
     secrets:
       GH_TOKEN:
         required: true
-      NPM_TOKEN:
-        required: true
+     # NPM_TOKEN:
+     #   required: true
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+    jobs:
+      semantic-release:
+        uses: linuspalma/cicd-pipelines/.github/workflows/semantic-release.yml@main
         with:
-          node-version: ${{ inputs.node_version }}
-      - run: npm ci
-      - run: npx semantic-release
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          node_version: '20'
+          config: |
+            {
+              "plugins": [
+                "@semantic-release/commit-analyzer",
+                "@semantic-release/release-notes-generator",
+                "@semantic-release/changelog",
+                ["@semantic-release/git", {
+                  "assets": ["package.json", "CHANGELOG.md"],
+                  "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                }]
+              ]
+            }
+        secrets:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
