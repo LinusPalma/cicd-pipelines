@@ -11,11 +11,9 @@ permissions:
   pull-requests: write
 
 jobs:
-  call-semantic-release:
+  semantic-release:
     uses: linuspalma/cicd-pipelines/.github/workflows/semantic-release.yml@main
     with:
       node_version: '20'
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#test
