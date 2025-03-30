@@ -1,0 +1,36 @@
+name: Semantic Release versioning
+
+on:
+  workflow_call:
+    inputs:
+      config_path:
+        required: false
+        type: string
+        default: 'configs/release-base.config.js'
+    secrets:
+      GH_TOKEN:
+        required: true
+
+jobs:
+  versioning:
+    name: versioning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Semantic Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --extends=${{ inputs.config_path }}

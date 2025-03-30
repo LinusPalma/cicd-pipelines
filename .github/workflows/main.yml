@@ -12,8 +12,6 @@ permissions:
 
 jobs:
   semantic-release:
-    uses: linuspalma/cicd-pipelines/.github/workflows/semantic-release.yml@main
-    with:
-      node_version: '20'
+    uses: linuspalma/cicd-pipelines/.github/workflows/versioning.yml@main
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
