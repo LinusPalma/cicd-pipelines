@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.0.1...v1.1.0) (2025-03-30)
+
+
+### Features
+
+* npm publishing pipeline ([20f2492](https://github.com/LinusPalma/cicd-pipelines/commit/20f249209a206ba7d657bc0b61c654146e0e6e0f))
+* npm publishing pipeline ([57950b0](https://github.com/LinusPalma/cicd-pipelines/commit/57950b0a3b74baf41406a654bbd75a6a2ba18a07))
+
 ## [1.0.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.0.0...v1.0.1) (2025-03-29)
 
 
