@@ -6,7 +6,7 @@ on:
       config_path:
         required: false
         type: string
-        default: '@linuspalma/cicd-pipelines/configs/versioning.config.js'
+        default: './cicd-pipelines/configs/versioning.config.js'
     secrets:
       GH_TOKEN:
         required: true
