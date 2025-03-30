@@ -27,6 +27,7 @@ jobs:
           repository: linuspalma/cicd-pipelines
           ref: main
           path: template
+
       - name: List Template Repository
         run: ls -R template
 
@@ -35,10 +36,15 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Install dependencies
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Install Template Dependencies
+        working-directory: template
         run: npm ci
 
       - name: Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_PATH: $(pwd)/template/node_modules
         run: npx semantic-release --extends=$(pwd)/template/configs/versioning.config.js
