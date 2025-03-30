@@ -15,21 +15,26 @@ on:
 
 jobs:
   semantic-release:
-    uses: linuspalma/cicd-pipelines/.github/workflows/semantic-release.yml@main
-    with:
-      node_version: '20'
-      config: |
-        {
-          "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/changelog",
-            ["@semantic-release/git", {
-              "assets": ["package.json", "CHANGELOG.md"],
-              "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-            }]
-          ]
-        }
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEMANTIC_RELEASE_CONFIG: |
+            {
+              "plugins": [
+                "@semantic-release/commit-analyzer",
+                "@semantic-release/release-notes-generator",
+                "@semantic-release/changelog",
+                ["@semantic-release/git", {
+                  "assets": ["package.json", "CHANGELOG.md"],
+                  "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                }]
+              ]
+            }
 
