@@ -10,8 +10,6 @@ on:
     secrets:
       GH_TOKEN:
         required: true
-      # NPM_TOKEN:
-      #   required: true
 
 jobs:
   semantic-release:
@@ -19,8 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Wichtig: Volle Git-History
-          persist-credentials: false  # Wichtig für den Git-Push
+          fetch-depth: 0
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -35,8 +33,8 @@ jobs:
               "@semantic-release/commit-analyzer",
               "@semantic-release/release-notes-generator",
               "@semantic-release/changelog",
-              ["@semantic-release/npm", {
-                "npmPublish": false
+              ["@semantic-release/exec", {
+                "prepareCmd": "node -e \"const pkg=require('./package.json'); pkg.version='${nextRelease.version}'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2))\""
               }],
               ["@semantic-release/git", {
                 "assets": ["package.json", "CHANGELOG.md"],
@@ -46,12 +44,11 @@ jobs:
           }
           EOF
 
-      - run: npm ci
+      - run: |
+          npm install --save-dev @semantic-release/exec
+          npm ci
 
       - name: Semantic Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-          
-
