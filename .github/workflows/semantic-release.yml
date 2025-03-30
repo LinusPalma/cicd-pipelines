@@ -33,9 +33,6 @@ jobs:
               "@semantic-release/commit-analyzer",
               "@semantic-release/release-notes-generator",
               "@semantic-release/changelog",
-              ["@semantic-release/exec", {
-                "prepareCmd": "node -e \"const pkg=require('./package.json'); pkg.version='${nextRelease.version}'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2))\""
-              }],
               ["@semantic-release/git", {
                 "assets": ["package.json", "CHANGELOG.md"],
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
@@ -44,11 +41,21 @@ jobs:
           }
           EOF
 
-      - run: |
-          npm install --save-dev @semantic-release/exec
-          npm ci
+      - run: npm ci
 
-      - name: Semantic Release
-        run: npx semantic-release
+      - name: Semantic Release with Version Update
+        run: |
+          # Führe semantic-release aus und speichere die Version
+          VERSION=$(npx semantic-release --dry-run | grep -oP 'The next release version is \K[0-9]+\.[0-9]+\.[0-9]+' || true)
+          
+          if [ ! -z "$VERSION" ]; then
+            # Aktualisiere package.json
+            sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+          
+            # Führe semantic-release richtig aus
+            npx semantic-release
+          else
+            echo "No new version to be released"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
