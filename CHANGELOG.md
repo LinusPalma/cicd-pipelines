@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.7.0...v1.8.0) (2025-03-30)
+
+
+### Features
+
+* versioning.config.js deactivating search ([d27a25e](https://github.com/LinusPalma/cicd-pipelines/commit/d27a25e33dcfa0cea390fb8a8ea86c92254207ef))
+
 # [1.7.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.6.1...v1.7.0) (2025-03-30)
 
 
