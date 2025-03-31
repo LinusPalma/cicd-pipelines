@@ -1,41 +1,52 @@
-name: NPM Package Publishing
+name: Semantic Release NPM Publishing
 
 on:
   workflow_call:
     inputs:
-      node_version:
+      config_path:
+        description: 'Pfad zur npm-release Config'
         required: false
         type: string
-        default: '18'
-      npm_access:
-        required: false
-        type: string
-        default: 'restricted'
+        default: './configs/npm-release.config.js'
     secrets:
       NPM_TOKEN:
+        description: 'NPM Authentifizierungstoken'
         required: true
 
 jobs:
-  publish:
+  npm-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Checkout Project Repository
+        uses: actions/checkout@v3
         with:
-          node-version: ${{ inputs.node_version }}
-          registry-url: 'https://registry.npmjs.org'
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Install dependencies
+      - name: Checkout Template Repository
+        uses: actions/checkout@v3
+        with:
+          repository: linuspalma/cicd-pipelines
+          ref: main
+          path: template
+
+      - name: List Template Repository
+        run: ls -R template
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Install Project Dependencies
         run: npm ci
 
-      - name: Set package access
-        run: |
-          if [ -f "package.json" ]; then
-            npm pkg set publishConfig.access=${{ inputs.npm_access }}
-          fi
+      - name: Install Template Dependencies
+        working-directory: template
+        run: npm ci
 
-      - name: Publish to NPM
-        run: npm publish
+      - name: Semantic Release NPM Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_PATH: $(pwd)/template/node_modules
+        run: npx semantic-release --extends=$(pwd)/template/configs/npm-release.config.js
