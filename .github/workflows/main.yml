@@ -15,4 +15,3 @@ jobs:
     uses: linuspalma/cicd-pipelines/.github/workflows/versioning.yml@main
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
-    #  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
