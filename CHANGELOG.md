@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/LinusPalma/cicd-pipelines/compare/v1.9.0...v1.9.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* new pipeline for npm release ([c4dc94f](https://github.com/LinusPalma/cicd-pipelines/commit/c4dc94f7d2ceb647ac452e854da74b3d001cc91f))
+
 # [1.9.0](https://github.com/LinusPalma/cicd-pipelines/compare/v1.8.0...v1.9.0) (2025-03-31)
 
 
