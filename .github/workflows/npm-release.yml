@@ -26,6 +26,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Ensure latest changes are fetched
+        run: |
+          git fetch --prune
+          git checkout main
+          git pull
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:

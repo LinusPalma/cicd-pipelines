@@ -1,3 +1,4 @@
+// config/npm-release.config.js
 export default {
     branches: ['main'],
     // Hier werden nur die npm-Aufgaben ausgeführt.
@@ -12,4 +13,3 @@ export default {
         ['@semantic-release/npm', { npmPublish: true }]
     ]
 }
-
