@@ -1,20 +1,23 @@
-name: Semantic Release NPM Publishing
+name: NPM Package Publishing
 
 on:
   workflow_call:
     inputs:
-      config_path:
-        description: 'Pfad zur npm-release Config'
+      node_version:
         required: false
         type: string
-        default: './configs/npm-release.config.js'
+        default: 'lts/*'
+      npm_access:
+        required: false
+        type: string
+        default: 'restricted'
     secrets:
       NPM_TOKEN:
         description: 'NPM Authentifizierungstoken'
         required: true
 
 jobs:
-  npm-release:
+  npm-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project Repository
@@ -23,30 +26,22 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Checkout Template Repository
-        uses: actions/checkout@v3
-        with:
-          repository: linuspalma/cicd-pipelines
-          ref: main
-          path: template
-
-      - name: List Template Repository
-        run: ls -R template
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: ${{ inputs.node_version }}
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Project Dependencies
         run: npm ci
 
-      - name: Install Template Dependencies
-        working-directory: template
-        run: npm ci
+      - name: Set package access
+        run: |
+          if [ -f "package.json" ]; then
+            npm pkg set publishConfig.access=${{ inputs.npm_access }}
+          fi
 
-      - name: Semantic Release NPM Publish
+      - name: Publish to NPM
+        run: npm publish
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_PATH: $(pwd)/template/node_modules
-        run: npx semantic-release --extends=$(pwd)/template/configs/npm-release.config.js
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
