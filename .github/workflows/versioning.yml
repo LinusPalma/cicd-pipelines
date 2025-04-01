@@ -8,7 +8,7 @@ on:
         type: string
         default: './configs/versioning.config.js'
     secrets:
-      GITHUB_TOKEN:
+      GH_TOKEN:
         required: true
 
 jobs:
@@ -45,6 +45,6 @@ jobs:
 
       - name: Semantic Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_PATH: $(pwd)/template/node_modules
         run: npx semantic-release --extends=$(pwd)/template/configs/versioning.config.js
