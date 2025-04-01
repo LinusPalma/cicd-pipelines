@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/LinusPalma/cicd-pipelines/compare/v1.9.3...v1.9.4) (2025-04-01)
+
+
+### Bug Fixes
+
+* using removing persist-credentials: false ([554cf42](https://github.com/LinusPalma/cicd-pipelines/commit/554cf42042c25915d7a24dabd9d9ae4b8c097887))
+
 ## [1.9.3](https://github.com/LinusPalma/cicd-pipelines/compare/v1.9.2...v1.9.3) (2025-04-01)
 
 
