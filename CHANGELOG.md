@@ -1,3 +1,12 @@
+## [1.9.3](https://github.com/LinusPalma/cicd-pipelines/compare/v1.9.2...v1.9.3) (2025-04-01)
+
+
+### Bug Fixes
+
+* using GITHUB_TOKEN ([b20ccd3](https://github.com/LinusPalma/cicd-pipelines/commit/b20ccd35733fadb4e713eb85bb218578c63a441f))
+* using GITHUB_TOKEN ([ca2c6bd](https://github.com/LinusPalma/cicd-pipelines/commit/ca2c6bda35741f41ca7ed63737bcca0023272278))
+* using GITHUB_TOKEN ([f2b6e4c](https://github.com/LinusPalma/cicd-pipelines/commit/f2b6e4c4cc1e0d3fec2f2efb56f0f82129ee786f))
+
 ## [1.9.2](https://github.com/LinusPalma/cicd-pipelines/compare/v1.9.1...v1.9.2) (2025-03-31)
 
 
